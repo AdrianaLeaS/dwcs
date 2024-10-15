@@ -39,8 +39,8 @@
                                 <a href="UD2/anexos/1.introduccion.php" target="_blank">Solución 1. Introducción</a><br />
                                 <a href="UD2/anexos/2.arrays.php" target="_blank">Solución 2. Arrays y estructuras de control</a><br />
                                 <a href="UD2/anexos/3.formularios.php" target="_blank">Solución 3. Formularios</a><br />
-                                <a href="#" target="_blank">Solución 4. Funciones</a><br />
-                                <a href="#" target="_blank">Solución 5. Librerías</a><br />    
+                                <a href="UD2/anexos/4.funciones.php" target="_blank">Solución 4. Funciones</a><br />
+                                <a href="UD2/anexos/5.librerias.php" target="_blank">Solución 5. Librerías</a><br />    
                             </td>
                         </tr>
                     </tbody>
