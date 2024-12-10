@@ -16,6 +16,26 @@
                     Lista de tareas
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="nuevoUsuarioForm.php">
+                    Nuevo usuario
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="editaUsuarioForm.php">
+                    Editausuario
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="borrarUsuario.php">
+                    Borrar usuario
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="usuarios.php">
+                    Lista usuarios
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

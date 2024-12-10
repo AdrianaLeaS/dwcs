@@ -1,52 +1,55 @@
 <?php 
 // Crea la conexión
-function conectar ($host, $user, $pass, $db){
+function conectar($host, $user, $pass, $db) {
 
     $conexion = new mysqli ($host, $user, $pass, $db); 
+
     $error = $conexion->connect_error;
+
+    return $conexion;
     
-    // Comprueba la conexion
-    if($error !=null){
+    /* Comprueba la conexion
+    if($error!=null){
         die('Fallo en la conexion: '.$error);
     }
-    echo 'Conexión correcta <br>';
+    echo 'Conexión correcta <br>';*/
 
 }
 
 function cerrarConexion ($conexion) {
 
     // Cierra la conexión
-    $conexion ->close();
+    if (isset($conexion) && $conexion->connect_errno === 0) {
+        $conexion->close();
+    }
 }
 
-//Utilizar mi conexion para conectarme a la base de datos
 
-function conectaTareas (){
-    return conectar('db', 'root', 'test', 'tareas');
-}
 
 // Crear la base de datos
 function crearDB () {
     try {
 
         $conexion = conectar('db', 'root', 'test', null);
-        if ($conexion ->connect_error) {
-            return [false, $conexion->error];
+        if ($conexion->connect_error !=null) {
+            die('Fallo en la conexion: '.$error);
+
         }else{
 
             //Para verificar si laa DB existe
-            $sqlCheck = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'TAREAS'";
+            $sqlCheck = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'tareas'";
             $resultado = $conexion->query($sqlCheck);
             if ($resultado && $resultado->num_rows >0){
-                return [false, 'La base de datos "tareas" ya existe.'];
-            }
+                echo 'La base de datos "tareas" ya existe.';
+            }else {
             
             $sql = 'CREATE DATABASE IF NOT EXISTS tareas';
-            if ($conexion->query($sql)) {
+            if ($conexion->query($sql) ) {
                 echo 'Base de datos creada con  éxito <br>';
-            }
+            }else{
                 echo 'Error creando la base de datos: '.$conexion->error . '<br>';
-
+            }
+        }
         }
     
     }catch(mysqli_sql_exception $e) {
@@ -57,6 +60,11 @@ function crearDB () {
     }
 }
 
+//Utilizar mi conexion para conectarme a la base de datos
+
+function conectaTareas (){
+    return conectar('db', 'root', 'test', 'tareas');
+}
 
 // Crear la tabla usuarios
 
@@ -67,24 +75,24 @@ try {
     //En primer lugar me conecto a la base de datos
     $conexion = conectaTareas();
 
-    if($conexion->connect_error){
-        return[false, $conexion->error];
+    if($conexion->connect_error !=null){
+       die ('Fallo en la conexión a la base de datos: '.$conexion->connect_error);
     }else {
 
         //Verificamos si la tabla existe
-        $sqlCheck = "SHOWS TABLE LIKE 'usuarios'";
+        $sqlCheck = "SHOW TABLES LIKE 'usuarios'";
         $resultado = $conexion->query($sqlCheck);
 
         if ($resultado && $resultado->num_rows >0){
-            return [false, 'La tabla "usuarios" ya existe.'];
-        }
+           echo 'La tabla "usuarios" ya existe.';
+        }else {
 
         $sql = 'CREATE TABLE IF NOT EXISTS usuarios(
             id INT(6) AUTO_INCREMENT PRIMARY KEY, 
             username VARCHAR(50) NOT NULL, 
             nombre VARCHAR(50) NOT NULL,
             apellido VARCHAR(100) NOT NULL,
-            contraseña VARCHAR(100) NOT NULL
+            contrasena VARCHAR(100) NOT NULL
         )';
 
         if ($conexion->query($sql)) {
@@ -93,7 +101,7 @@ try {
             echo 'Error creando la tabla usuarios: '.$conexion->error . '<br>';
 
         }
-
+    }
     }
 
 }catch(mysqli_sql_exception $e) {
@@ -113,13 +121,14 @@ try {
     // Me conecto a la base de datos
     $conexion = conectaTareas();
 
-    if ($conexion->connect_error) {
-        echo 'No se ha podido conectar a la base de datos.'.$conexion->error.'<br>';
+    if ($conexion->connect_error !=null) {
+        die('Fallo al conectar la base de datos. '.$conexion->$connect_error.'<br>');
+        
 
     }else {
 
         //Verificamos si la tabla existe
-        $sqlCheck = 'SHOWS TABLE LIKE "tareas"';
+        $sqlCheck = "SHOW TABLES LIKE 'tareas'";
         $resultado = $conexion->query($sqlCheck);
 
         if ($resultado && $resultado->num_rows >0){
@@ -147,7 +156,7 @@ try {
 
  
 }finally {
-    cerrarConexion();
+    cerrarConexion($conexion);
 }
 
 }
