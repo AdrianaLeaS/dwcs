@@ -27,6 +27,7 @@
                     
                     ?>
                     <div class="table-responsive">
+                    <table class="table table-sm table-striped table-hover">
                       <thead>
                       <tr>
                         <th>ID</th>
@@ -58,7 +59,7 @@
                         }
                         ?>
                       </tbody>
-
+                      </table>
 
                     </div>
                 </div>

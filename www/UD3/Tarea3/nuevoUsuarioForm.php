@@ -29,7 +29,7 @@
                     <label for="nombre" class="form-label" >Nombre</label>
                     <input   type="text" class="form-control" id="nombre" name="nombre" value="<?php echo isset($nombre)?($nombre): '' ?> " required>
 
-                    <label for="apellido" class="form-label" >Apellidos</label>
+                    <label for="apellido" class="form-label" >Apellido</label>
                     <input   type="text" class="form-control" id="apellido" name="apellido" value="<?php echo isset($apellido)?($apellido): '' ?> " required>                  
 
                     <label for="username" class="form-label" >Username</label>

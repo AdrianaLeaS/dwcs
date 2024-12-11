@@ -28,13 +28,14 @@
                 
                 <?php
                 //Para recoger datos de un formulario. Los datos se validarian creando una funcion para validarlos en utils.php
+                require_once('databasePDO.php');
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];
                 $username = $_POST['username'];
                 $contrasena = $_POST['contrasena'];
 
                 //Requiere la hoja donde se encuentra la funcion a la que va a llamar
-                require_once('databasePDO.php');
+               
                 nuevoUsuario($nombre, $apellido, $username, $contrasena);
                 ?>
 
