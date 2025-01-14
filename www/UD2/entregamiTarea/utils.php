@@ -1,1 +1,1 @@
- // Crear un array con la lista de tareas
+ // Crear un array con la lista de tareas, y cada tarea es un array de clave valor.
