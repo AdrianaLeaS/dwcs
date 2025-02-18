@@ -7,6 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <?php
+
+    require_once('login/sesiones.php');
+    if (!checkAdmin()) header("Location: index.php?redirect=true");
+    ?>
 
     <?php include_once('vista/header.php'); ?>
 
